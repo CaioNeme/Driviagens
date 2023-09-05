@@ -1,6 +1,6 @@
 import { Router } from "express";
 import travelsRouter from "./travels.routes.js";
-import passagersRouter from "./passengens.routes.js";
+import passagersRouter from "./passengers.routes.js";
 import flightsRouter from "./flights.routes.js";
 import citiesRouter from "./cities.routes.js";
 
