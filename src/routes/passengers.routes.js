@@ -1,10 +1,15 @@
 import { Router } from "express";
 import validateSchema from "../middlewares/validationSchemas.middleswares.js";
 import { passengersSchema } from "../schema/passengers.schemas.js";
+import { postPassengersController } from "../controllers/passengers.controllers.js";
 
-const passagersRouter = Router();
+const passengersRouter = Router();
 
-passagersRouter.post("/passagers", validateSchema(passengersSchema));
-passagersRouter.get("/passagers/travels");
+passengersRouter.post(
+  "/passengers",
+  validateSchema(passengersSchema),
+  postPassengersController
+);
+passengersRouter.get("/passengers/travels");
 
-export default passagersRouter;
+export default passengersRouter;
