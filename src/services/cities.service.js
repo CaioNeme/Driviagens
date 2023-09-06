@@ -3,11 +3,7 @@ function reformatedName(name) {
 }
 
 function verifyName(res) {
-  if (!res.rows) {
-    return "CONFLICT";
-  } else {
-    return "CREATED";
-  }
+  if (!res.rows) throw new Error("Cidade não encontrada");
 }
 
 export const citiesServices = { reformatedName, verifyName };

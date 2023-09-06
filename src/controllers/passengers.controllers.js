@@ -11,6 +11,6 @@ export async function postPassengersController(req, res) {
     res.sendStatus(status.CREATED);
   } catch (error) {
     console.log(error);
-    res.status(status.BAD_REQUEST).send(error);
+    res.status(status.INTERNAL_SERVER_ERROR).send(error);
   }
 }

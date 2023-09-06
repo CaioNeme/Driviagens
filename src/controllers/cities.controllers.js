@@ -12,10 +12,11 @@ export async function postCityControllers(req, res) {
 
     res.sendStatus(status.CREATED);
   } catch (error) {
-    const httpCode = citiesServices.verifyName(error);
-
-    if (httpCode === "CONFLICT") {
-      res.status(status.CONFLICT).send(`City(${name}) already exists.`);
+    console.log(error);
+    if (error.code === "23505") {
+      res.status(status.CONFLICT).send(error.detail);
+    } else {
+      res.sendStatus(status.INTERNAL_SERVER_ERROR);
     }
   }
 }
