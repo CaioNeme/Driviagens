@@ -10,7 +10,6 @@ export async function postPassengersController(req, res) {
 
     res.sendStatus(status.CREATED);
   } catch (error) {
-    console.log(error);
     res.status(status.INTERNAL_SERVER_ERROR).send(error);
   }
 }
@@ -22,12 +21,9 @@ export async function getPassengersController(req, res) {
   try {
     const passengers = await passengersService.getPassengers(name);
 
-    if (passengers === null) {
-      return res.status(status.INTERNAL_SERVER_ERROR).send("Too many requests");
-    }
-
     res.status(status.OK).send(passengers.rows);
   } catch (error) {
+    console.log(error);
     res.sendStatus(status.INTERNAL_SERVER_ERROR);
   }
 }

@@ -8,21 +8,27 @@ function postPassengers(firstName, lastName) {
   return postPassengersRepository(firstName, lastName);
 }
 
-function getPassengers(name) {
+async function getPassengers(name) {
   if (!name) {
-    const passengerWithoutName = getPassengersWithoutNameRepository();
+    const passengerWithoutName = await getPassengersWithoutNameRepository();
 
     if (passengerWithoutName.rowCount > 10) {
-      return null;
+      throw {
+        type: "internalServerError",
+        message: "Too many requests",
+      };
     }
 
     return passengerWithoutName;
   }
 
-  const passengerWithName = getPassengersWithNameRepository(name);
+  const passengerWithName = await getPassengersWithNameRepository(name);
 
   if (passengerWithName.rowCount > 10) {
-    return null;
+    throw {
+      type: "internalServerError",
+      message: "Too many requests",
+    };
   }
 
   return passengerWithName;

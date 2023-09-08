@@ -1,9 +1,14 @@
-function reformatedName(name) {
-  return name.trim().toLowerCase();
+import { errorsCities } from "../errors/errorsCities.js";
+import {
+  postCityRepository,
+  verifyCity,
+} from "../repositories/cities.repository.js";
+
+async function postCityServices(name) {
+  const cityName = name.trim().toLowerCase();
+  const alreadyExists = await verifyCity(cityName);
+  if (alreadyExists > 0) throw errorsCities.conflict(name);
+  return postCityRepository(cityName);
 }
 
-function verifyName(res) {
-  if (!res.rows) throw new Error("Cidade não encontrada");
-}
-
-export const citiesServices = { reformatedName, verifyName };
+export const citiesServices = { postCityServices };

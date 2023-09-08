@@ -5,11 +5,11 @@ function conflict() {
   };
 }
 
-function unprocessable_entity() {
+function unprocessableEntity() {
   return {
-    type: "unprocessable_entity",
+    type: "unprocessableEntity",
     message: "A data deve ser maior que a data atual!",
   };
 }
 
-export const errorsFlights = { conflict, unprocessable_entity };
+export const errorsFlights = { conflict, unprocessableEntity };

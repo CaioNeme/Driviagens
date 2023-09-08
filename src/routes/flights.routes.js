@@ -1,7 +1,10 @@
 import { Router } from "express";
 import validateSchema from "../middlewares/validationSchemas.middleswares.js";
 import { flightsSchema } from "../schema/flights.schemas.js";
-import { postFlightsController } from "../controllers/fligths.controllers.js";
+import {
+  getFlightsController,
+  postFlightsController,
+} from "../controllers/fligths.controllers.js";
 
 const flightsRouter = Router();
 
@@ -10,6 +13,6 @@ flightsRouter.post(
   validateSchema(flightsSchema),
   postFlightsController
 );
-flightsRouter.get("/flights");
+flightsRouter.get("/flights", getFlightsController);
 
 export default flightsRouter;
