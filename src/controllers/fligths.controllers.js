@@ -11,7 +11,12 @@ export async function postFlightsController(req, res) {
 
 export async function getFlightsController(req, res) {
   const status = httpStatus;
-  const { origin, destination, smallerDate, biggerDate } = req.query;
+  const {
+    origin,
+    destination,
+    "smaller-date": smallerDate,
+    "bigger-date": biggerDate,
+  } = req.query;
 
   const resp = await flightsService.getFlightsService(
     origin,

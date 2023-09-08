@@ -3,7 +3,7 @@ export default function validateSchema(schema) {
     const validation = schema.validate(req.body, { abortEarly: false });
 
     if (validation.error) {
-      throw { type: "badRequest", message: "Dados inválidos" };
+      throw { type: "unprocessableEntity", message: "Dados inválidos" };
     }
     next();
   };
